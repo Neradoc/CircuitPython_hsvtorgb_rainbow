@@ -52,7 +52,7 @@ def hsv2rgb_rainbow(hsv):
     """
     Convert an HSV value to RGB using a visually balanced rainbow.
     This "rainbow" yields better yellow and orange than a straight mathematical "spectrum".
-    
+
     :param Tuple(int, int, int) hsv: Color tuple (hue, saturation, value) as ints 0-255.
     :return Tuple(int, int, int): (red, green, blue) color tuple as ints 0-255.
     """
@@ -201,7 +201,7 @@ def rainbow_wheel(hue):
     """
     Convert an hue value to RGB using a visually balanced rainbow.
     This "rainbow" yields better yellow and orange than a straight mathematical "spectrum".
-    
+
     :param float hue: Color hue as a 0.-256. float.
     :return Tuple(int, int, int): (red, green, blue) color tuple as ints 0-255.
     """
