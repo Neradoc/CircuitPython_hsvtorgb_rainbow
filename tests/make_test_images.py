@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright 2025 Neradoc, https://neradoc.me
+# SPDX-License-Identifier: MIT
+
 import time
 import os
 from hsvtorgb_rainbow import hsv2rgb_rainbow, rainbow_wheel

@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright 2025 Neradoc, https://neradoc.me
+# SPDX-License-Identifier: MIT
+
 for hue in range(256):
     if not (hue & 0x80):
         # 0XX
