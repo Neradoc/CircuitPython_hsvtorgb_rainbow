@@ -1,7 +1,13 @@
 import time
+import os
 from hsvtorgb_rainbow import hsv2rgb_rainbow, rainbow_wheel
 from PIL import Image, ImageDraw, ImageColor
-from adafruit_fancyled.fastled_helpers import hsv2rgb_spectrum
+
+try:
+    from adafruit_fancyled.fastled_helpers import hsv2rgb_spectrum
+except ImportError:
+    def hsv2rgb_spectrum(*args):
+        raise ImportError("Could not import adafruit_fancyled")
 
 sampling = None # Image.Resampling.BICUBIC
 # BICUBIC BILINEAR BOX HAMMING LANCZOS NEAREST
@@ -69,6 +75,11 @@ FUNCTIONS = {
 }
 
 for name, color_function, params in FUNCTIONS:
+    try:
+        rgb = color_function(params((255, 255, 255)))
+    except ImportError:
+        print(f"Can't find {name}")
+        continue
 
     img = Image.new("RGBA", (512, THIS_TOP), color=(0, 0, 0))
     draw = ImageDraw.Draw(img)
@@ -97,4 +108,5 @@ for name, color_function, params in FUNCTIONS:
             draw.circle(position, radius=0.5, fill=color)
 
     resized = img.resize((img.width, img.height // 2), sampling)
-    resized.save(f"_tmp_sample-{name}.png")
+    os.makedirs("_build", exist_ok=True)
+    resized.save(f"_build/_tmp_sample-{name}.png")
